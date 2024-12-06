@@ -1,23 +1,22 @@
 (lang dune 3.17)
 
-(name day2)
+(name day4)
 
 (generate_opam_files true)
-(map_workspace_root false)
 
 (source
  (github username/reponame))
 
-(authors "Anders Kökeritz <anders.kokeritz@gmail.com>")
+(authors "Author Name <author@example.com>")
 
-(maintainers "Anders Kökeritz <anders.kokeritz@gmail.com>")
+(maintainers "Maintainer Name <maintainer@example.com>")
 
 (license LICENSE)
 
 (documentation https://url/to/documentation)
 
 (package
- (name day2)
+ (name day4)
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends ocaml)
