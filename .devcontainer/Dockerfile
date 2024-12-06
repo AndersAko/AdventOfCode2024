@@ -6,16 +6,16 @@ ENV ZSCALER_CERTIFI_CA_BUNDLE=/usr/local/share/ca-certificates/zscaler-certifi-c
  
 # Point NodeJS to ZScaler Root CA
 # https://nodejs.org/docs/latest-v4.x/api/cli.html#cli_node_extra_ca_certs_file
-ENV NODE_EXTRA_CA_CERTS=$ZSCALER_CERTIFI_CA_BUNDLE
+# ENV NODE_EXTRA_CA_CERTS=$ZSCALER_CERTIFI_CA_BUNDLE
  
 # For Python `requests`
-ENV REQUESTS_CA_BUNDLE=$ZSCALER_CERTIFI_CA_BUNDLE
+# ENV REQUESTS_CA_BUNDLE=$ZSCALER_CERTIFI_CA_BUNDLE
  
 # For Python urllib
 ENV SSL_CERT_FILE=$ZSCALER_CERTIFI_CA_BUNDLE
  
 # For pip
-ENV PIP_CERT=$ZSCALER_CERTIFI_CA_BUNDLE
+# ENV PIP_CERT=$ZSCALER_CERTIFI_CA_BUNDLE
 RUN apt-get -y update 
 RUN apt-get -y install ca-certificates
 RUN update-ca-certificates
@@ -26,6 +26,7 @@ USER vscode
 WORKDIR /home/vscode
 
 RUN sudo apt-get install -y --no-install-recommends git opam ca-certificates
+RUN sudo apt-get install -y python3 pip
 
 RUN opam init -ya --disable-sandboxing
 
