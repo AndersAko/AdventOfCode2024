@@ -98,16 +98,36 @@ def solve1(filename):
 
 def solve2(filename):
     registers, program = read_input(filename)
+    computer = Computer(registers)
     
-    for a in range(1000000000):
-        computer = Computer(registers)
-        computer.A = a
-        output = computer.execute_part_2(program)
-        if output == program:
-            print(f"Part2: output = program at {a}")
-            print(",".join(map(str, output)))
-            return a
-    
+    # Start of sequence as reference
+    # for a in range(1000000):
+    #     # computer = Computer(registers)
+    #     computer.A = a
+    #     output = computer.execute_part_2(program)
+    #     if output is not None and output == program[:len(output)]:
+    #         print(bin(a), output)
+    #         if len(output) == len(program):
+    #             return a
+
+    options_for_a = [0]
+    for digit in range(len(program)):
+        new_options = []
+        for c in range(8):
+            b = program[digit] ^ c ^ 7
+            for a_opt in options_for_a:
+                a = (c << b) | (b ^ 2)
+                if a % 8 != (b ^ 2): 
+                    break
+                a = a << (digit * 3) | a_opt
+                computer.A = a
+                output = computer.execute(program)
+                if output is not None and output[:(digit+1)] == program[:(digit+1)]:
+                    if output == program:
+                        return a
+                    new_options.append(a)
+                    print (bin(a), output)
+        options_for_a = new_options
 
 if __name__ == "__main__":
     filename = "input.txt"
