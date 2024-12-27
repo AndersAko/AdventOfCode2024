@@ -27,7 +27,7 @@ def test_shortest_without_cheat():
     path_without_cheat = find_shortest_path(track, False, start, end)
     print(f"Shortest path without cheat: {path_without_cheat}")
 
-    assert path_without_cheat == 84
+    assert len(path_without_cheat) == 84 + 1
 
 def test_solve1_sample_input():
     actual = solve1("input1.txt", 4)

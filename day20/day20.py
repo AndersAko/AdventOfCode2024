@@ -103,6 +103,38 @@ def find_shortest_path_with_limit(map, cheat, start, end, max_length):
                     heappush(search, (score, *next_state))
     # print("No solution found")
 
+def find_shortest_path_with_cheats(map, start, end, max_length):
+    visited = set()
+    search = []
+    heappush(search, (0, *start, None, 1))
+    best_paths
+    while search:
+        _, *state_to_check = heappop(search)
+        x,y,*_ = state_to_check
+        if (x,y) not in visited:
+            visited.add((x,y))
+            # print(state_to_check)
+            for next_state in moves(map, state_to_check):
+                x,y,_,path = next_state
+                if (x,y) == end:
+                    return path
+                score = path + remain(x,y,end)
+                if (x,y) not in visited and score <= max_length:
+                    heappush(search, (score, *next_state))
+    # print("No solution found")
+
+# cheat: None = not cheated yet; (start, length): during cheat 
+# def find_paths(map, cheat_start, cheat_len, cheat_end, start, end):
+#     x,y = start
+#     x1,y1 = end
+#     paths = {}  # cheat(start,end): length
+#     for dx, dy in [(0,-1), (1,0), (0,1), (-1,0)]:
+#         if map[y+dy][x+dx] != '#':
+#             for cheat, length in find_paths(map, cheat, (x+dx, y+dy), )
+            
+#             or cheat == (x,y,x+dx,y+dy):
+
+
 def solve1(filename, limit):
     track, start, end = read_input(filename)
     size_x = len(track[0])
